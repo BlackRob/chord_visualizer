@@ -306,14 +306,14 @@ const StringNote: React.FC<{ note: string; numbo: string; freq: number }> = ({
 }) => {
   const classes = useClasses();
   const hlght = useState(highlighted);
-  //const thisColor: string = calculateColor(freq)[1];
-  const thisColor: string =
-    hlght.nested(note).value > 0 ? calculateColor(freq)[1] : "transparent";
+  const textColor: string = calculateColor(freq)[1];
+  const borderColor: string =
+    hlght.nested(note).value > 0 ? textColor : "transparent";
 
   return (
     <span
       className={classes.StringNote}
-      style={{ color: thisColor, borderColor: thisColor }}
+      style={{ color: textColor, borderColor: borderColor }}
     >
       {note}
       <sub className={classes.Subscript}>{numbo}</sub> &nbsp;
