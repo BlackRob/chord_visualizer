@@ -91,14 +91,17 @@ const useClasses = makeStyles({
     justifyContent: "center",
   },
   StringNote: {
-    fontSize: "24px",
+    ...shorthands.border("1px", "solid", "transparent"),
+    fontSize: "20px",
     color: "white",
-    marginTop: "0px",
-    marginBottom: "0px",
-    paddingTop: "0px",
-    paddingBottom: "0px",
-    paddingLeft: "0px",
-    paddingRight: "20px",
+    marginTop: "1px",
+    marginBottom: "1px",
+    marginRight: "8px",
+    paddingTop: "5px",
+    paddingBottom: "5px",
+    paddingLeft: "2px",
+    paddingRight: "2px",
+    textAlign: "center",
     width: "80px",
     display: "inline-block",
   },
@@ -149,8 +152,6 @@ const useClasses = makeStyles({
   DotDiv: {
     display: "flex",
     flexDirection: "row",
-    //width: "96px",
-    //...shorthands.border("1px", "solid", "white"),
     alignItems: "center",
     justifyContent: "center",
   },
@@ -304,10 +305,16 @@ const StringNote: React.FC<{ note: string; numbo: string; freq: number }> = ({
   freq,
 }) => {
   const classes = useClasses();
-  const thisColor: string = calculateColor(freq)[1];
+  const hlght = useState(highlighted);
+  //const thisColor: string = calculateColor(freq)[1];
+  const thisColor: string =
+    hlght.nested(note).value > 0 ? calculateColor(freq)[1] : "transparent";
 
   return (
-    <span className={classes.StringNote} style={{ color: thisColor }}>
+    <span
+      className={classes.StringNote}
+      style={{ color: thisColor, borderColor: thisColor }}
+    >
       {note}
       <sub className={classes.Subscript}>{numbo}</sub> &nbsp;
       {freq}
