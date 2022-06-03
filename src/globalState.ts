@@ -8,34 +8,49 @@ interface ChordObj {
   minor3: string;
 }
 interface NoteArray {
-  [index: string]: number;
-  A: number;
-  Ash: number;
-  B: number;
-  C: number;
-  Csh: number;
-  D: number;
-  Dsh: number;
-  E: number;
-  F: number;
-  Fsh: number;
-  G: number;
-  Gsh: number;
+  [index: string]: boolean;
+  A: boolean;
+  Ash: boolean;
+  B: boolean;
+  C: boolean;
+  Csh: boolean;
+  D: boolean;
+  Dsh: boolean;
+  E: boolean;
+  F: boolean;
+  Fsh: boolean;
+  G: boolean;
+  Gsh: boolean;
 }
 
-const initialHighlightState: NoteArray = {
-  A: 0,
-  Ash: 0,
-  B: 0,
-  C: 0,
-  Csh: 0,
-  D: 0,
-  Dsh: 0,
-  E: 0,
-  F: 0,
-  Fsh: 0,
-  G: 0,
-  Gsh: 0,
+const initialNoteHighlightState: NoteArray = {
+  A: false,
+  Ash: false,
+  B: false,
+  C: false,
+  Csh: false,
+  D: false,
+  Dsh: false,
+  E: false,
+  F: false,
+  Fsh: false,
+  G: false,
+  Gsh: false,
+};
+
+const initialChordHighlightState: NoteArray = {
+  A: false,
+  Ash: false,
+  B: false,
+  C: false,
+  Csh: false,
+  D: false,
+  Dsh: false,
+  E: false,
+  F: false,
+  Fsh: false,
+  G: false,
+  Gsh: false,
 };
 
 interface ChordButtType {
@@ -66,7 +81,7 @@ interface ChordButtType {
   Gshm: boolean;
 }
 
-const chordButts: ChordButtType = {
+const chordButtsAllOff: ChordButtType = {
   A: false,
   Am: false,
   Ash: false,
@@ -108,6 +123,35 @@ interface NoteButtType {
   G: boolean;
   Gsh: boolean;
 }
+interface NoteFreqType {
+  [index: string]: number;
+  A: number;
+  Ash: number;
+  B: number;
+  C: number;
+  Csh: number;
+  D: number;
+  Dsh: number;
+  E: number;
+  F: number;
+  Fsh: number;
+  G: number;
+  Gsh: number;
+}
+const chordLowFreq: NoteFreqType = {
+  A: 110,
+  Ash: 117,
+  B: 123,
+  C: 131,
+  Csh: 139,
+  D: 147,
+  Dsh: 156,
+  E: 82,
+  F: 87,
+  Fsh: 92,
+  G: 98,
+  Gsh: 104,
+};
 
 const noteButts: NoteButtType = {
   A: false,
@@ -124,8 +168,23 @@ const noteButts: NoteButtType = {
   Gsh: false,
 };
 
-const highlighted = createState(initialHighlightState);
-const chordButtState = createState(chordButts);
+const highlightedChord = createState(initialChordHighlightState);
+const highlightedNote = createState(initialNoteHighlightState);
+const chordButtState = createState(chordButtsAllOff);
 const noteButtState = createState(noteButts);
+const chordFirst = createState("");
+const chordThird = createState("");
+const chordFifth = createState("");
 
-export { chordButtState, highlighted, noteButtState };
+export {
+  chordButtState,
+  chordButtsAllOff,
+  highlightedChord,
+  chordFirst,
+  chordThird,
+  chordFifth,
+  chordLowFreq,
+  highlightedNote,
+  initialChordHighlightState,
+  noteButtState,
+};
